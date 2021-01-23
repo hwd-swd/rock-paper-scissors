@@ -5,7 +5,7 @@
 
 // defines the scoreboard to be updated
 const score = document.querySelector(".score");
-const log = document.querySelector("log");
+const log = document.querySelector(".log");
 
 // gives each of the buttons a selector for onclick
 const selections = document.querySelectorAll(".selector");
@@ -18,29 +18,38 @@ selections.forEach((selection) => {
 
 function playGame(e){
     let choice = e.target.getAttribute("data-key");
-    let result = playRound(choice,computerPlay());
+    let NPC = computerPlay();
+    let result = playRound(choice,NPC);
     switch (result){
         case true:
             wins++
+            str = "won";
             break;
         case false:
             losses++
+            str = "lost";
             break;
         case 'Tie':
+            str = "tied";
 
     }
     score.textContent = `Wins: ${wins} Losses: ${losses}`;
+    log.textContent = `You ${str}! ${choice} ${str} vs. ${NPC}.`;
     if (wins==5){
-        alert("Congratulations! You won!")
-        wins = 0;
-        losses = 0;
+        alert("Congratulations! You won!");
+        reset();
     }
     else if (losses==5) {
-        alert("Game Over! You Lose!")
-        wins = 0;
-        losses = 0;
+        alert("Game Over! You Lose!");
+        reset();
     }
     
+}
+
+function reset(){
+    wins = 0;
+    losses = 0;
+    score.textContent = `Wins: ${wins} Losses: ${losses}`;
 }
 
 function computerPlay() {

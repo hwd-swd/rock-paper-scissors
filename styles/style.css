@@ -8,9 +8,10 @@ h1{
     margin: 0.5rem 2rem;
 }
 
-.click{
-    background-color: black;
+.log{
+    text-align: center;
 }
+
 
 .container {
     display: flex;
